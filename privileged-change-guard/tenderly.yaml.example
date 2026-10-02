@@ -1,0 +1,30 @@
+# Tenderly CLI deployment of both actions (copy to tenderly.yaml, put the two .js files in actions/).
+# The guard needs no chain setting: the alerts (tag mf-privileged, no network filter) deliver every chain
+# and CONFIG.networks of privChangeGuard.js says how to read each one (Ethereum and Monad are listed).
+# mf-privileged is only this package's default tag name; any tag works (see the README, step 1).
+#   tenderly actions validate   # offline schema check
+#   tenderly actions deploy
+account_id: ""
+project_slug: ""
+actions:
+  your-account/your-project:        # account (or user) slug / project slug
+    runtime: v2                     # Node 20. ethers v5 (5.7.2 in our tests) is needed only for custom role names, signed
+                                    # announcements and live auto-pause; if it is not available, run npm install ethers@5.7.2 in actions/
+    sources: actions
+    specs:
+      privChangeGuard:
+        description: Privileged change guard (decode, classify holder, prior notice, auto-pause)
+        function: privChangeGuard:actionFn
+        execution_type: sequential  # the docs say alert triggers always run sequentially and execution_type has no effect for them; kept to show the intent:
+                                    # the dedupe list and the pause store are single storage keys, so the guard is written for sequential runs
+        trigger:
+          type: alert
+          alert: {}                 # then add this action as a destination on the GOV alerts (tag mf-privileged)
+      changeRegistry:
+        description: Registry of signed change announcements (announce, cancel, list)
+        function: changeRegistry:actionFn
+        trigger:
+          type: webhook
+          webhook:
+            authenticated: false    # the EIP-191 signature of an announcer in CONFIG.announcers is the credential,
+                                    # so no access key is sent with the request

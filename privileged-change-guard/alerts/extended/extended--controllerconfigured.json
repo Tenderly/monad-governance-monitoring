@@ -1,0 +1,34 @@
+{
+ "name": "GOV extended: ControllerConfigured (Circle MintController)",
+ "description": "Circle MintController: ControllerConfigured(address,address) emitted by a contract tagged mf-privileged. Default severity critical. The privChangeGuard Web3 Action decodes the change, classifies the holder (EOA, EIP-7702, Safe, timelock) and checks for prior notice.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "tag",
+   "expression": {
+    "tag": "mf-privileged"
+   }
+  },
+  {
+   "type": "emitted_log",
+   "expression": {
+    "address": "",
+    "match_any": true,
+    "match_non_project_contracts": false,
+    "event_name": "ControllerConfigured",
+    "event_id": "0xa56687ff5096e83f6e2c673cda0b677f56bbfcdf5fe0555d5830c407ede193cb",
+    "decode_events": false
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<PRIV_CHANGE_GUARD_ACTION_ID>",
+   "enabled": true
+  },
+  {
+   "id": "<NOTIFY_CHANNEL_ID>",
+   "enabled": true
+  }
+ ]
+}

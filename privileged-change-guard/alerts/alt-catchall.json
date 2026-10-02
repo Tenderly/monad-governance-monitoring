@@ -1,0 +1,25 @@
+{
+ "name": "GOV catch-all: any successful tx touching a mf-privileged contract",
+ "description": "Minimal-alert alternative: ONE alert instead of one per event. Fires on every successful transaction that touches a contract tagged mf-privileged and hands it to the privChangeGuard Web3 Action, which finds and decodes the governance logs itself. Use it only on quiet admin contracts: it runs the action on every touching tx. Notifications come from the action (Slack), not from this alert.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "tag",
+   "expression": {
+    "tag": "mf-privileged"
+   }
+  },
+  {
+   "type": "tx_status",
+   "expression": {
+    "transaction_success": true
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<PRIV_CHANGE_GUARD_ACTION_ID>",
+   "enabled": true
+  }
+ ]
+}

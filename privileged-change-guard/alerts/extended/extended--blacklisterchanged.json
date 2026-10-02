@@ -1,0 +1,34 @@
+{
+ "name": "GOV extended: BlacklisterChanged (Circle FiatToken)",
+ "description": "Circle FiatToken: BlacklisterChanged(address) emitted by a contract tagged mf-privileged. Default severity high. The privChangeGuard Web3 Action decodes the change, classifies the holder (EOA, EIP-7702, Safe, timelock) and checks for prior notice.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "tag",
+   "expression": {
+    "tag": "mf-privileged"
+   }
+  },
+  {
+   "type": "emitted_log",
+   "expression": {
+    "address": "",
+    "match_any": true,
+    "match_non_project_contracts": false,
+    "event_name": "BlacklisterChanged",
+    "event_id": "0xc67398012c111ce95ecb7429b933096c977380ee6c421175a71a4a4c6c88c06e",
+    "decode_events": false
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<PRIV_CHANGE_GUARD_ACTION_ID>",
+   "enabled": true
+  },
+  {
+   "id": "<NOTIFY_CHANNEL_ID>",
+   "enabled": true
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "name": "GOV extended: OwnershipHandoverRequested (Solady Ownable)",
+ "description": "Solady Ownable: OwnershipHandoverRequested(address) emitted by a contract tagged mf-privileged. Default severity info. The privChangeGuard Web3 Action decodes the change, classifies the holder (EOA, EIP-7702, Safe, timelock) and checks for prior notice.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "tag",
+   "expression": {
+    "tag": "mf-privileged"
+   }
+  },
+  {
+   "type": "emitted_log",
+   "expression": {
+    "address": "",
+    "match_any": true,
+    "match_non_project_contracts": false,
+    "event_name": "OwnershipHandoverRequested",
+    "event_id": "0xdbf36a107da19e49527a7176a1babf963b4b0ff8cde35ee35d6cd8f1f9ac7e1d",
+    "decode_events": false
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<PRIV_CHANGE_GUARD_ACTION_ID>",
+   "enabled": true
+  },
+  {
+   "id": "<NOTIFY_CHANNEL_ID>",
+   "enabled": true
+  }
+ ]
+}

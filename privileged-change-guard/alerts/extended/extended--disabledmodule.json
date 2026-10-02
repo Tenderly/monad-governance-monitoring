@@ -1,0 +1,34 @@
+{
+ "name": "GOV extended: DisabledModule (Safe)",
+ "description": "Safe: DisabledModule(address) emitted by a contract tagged mf-privileged. Default severity high. The privChangeGuard Web3 Action decodes the change, classifies the holder (EOA, EIP-7702, Safe, timelock) and checks for prior notice.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "tag",
+   "expression": {
+    "tag": "mf-privileged"
+   }
+  },
+  {
+   "type": "emitted_log",
+   "expression": {
+    "address": "",
+    "match_any": true,
+    "match_non_project_contracts": false,
+    "event_name": "DisabledModule",
+    "event_id": "0xaab4fa2b463f581b2b32cb3b7e3b704b9ce37cc209b5fb4d77e593ace4054276",
+    "decode_events": false
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<PRIV_CHANGE_GUARD_ACTION_ID>",
+   "enabled": true
+  },
+  {
+   "id": "<NOTIFY_CHANNEL_ID>",
+   "enabled": true
+  }
+ ]
+}

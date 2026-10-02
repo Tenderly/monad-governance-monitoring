@@ -1,0 +1,34 @@
+{
+ "name": "GOV monad-protocols: PeerSet (LayerZero V2 OApp / OFT)",
+ "description": "LayerZero V2 OApp / OFT: PeerSet(uint32,bytes32) emitted by a contract tagged mf-privileged. Default severity high. The privChangeGuard Web3 Action decodes the change, classifies the holder (EOA, EIP-7702, Safe, timelock) and checks for prior notice.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "tag",
+   "expression": {
+    "tag": "mf-privileged"
+   }
+  },
+  {
+   "type": "emitted_log",
+   "expression": {
+    "address": "",
+    "match_any": true,
+    "match_non_project_contracts": false,
+    "event_name": "PeerSet",
+    "event_id": "0x238399d427b947898edb290f5ff0f9109849b1c3ba196a42e35f00c50a54b98b",
+    "decode_events": false
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<PRIV_CHANGE_GUARD_ACTION_ID>",
+   "enabled": true
+  },
+  {
+   "id": "<NOTIFY_CHANNEL_ID>",
+   "enabled": true
+  }
+ ]
+}

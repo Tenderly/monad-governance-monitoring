@@ -1,0 +1,39 @@
+{
+ "name": "GOV optional: token mint (Transfer from 0x0)",
+ "description": "Mint of one token: Transfer with from == 0x0. The ERC20 Token Transfer alert cannot watch 0x0, so this stays an Event alert with a parameter condition. The token must be a contract of the project with a verified ABI on Tenderly (the parameter must carry the ABI name, from for OpenZeppelin tokens). Replace the placeholders with the token and its network. Add a value >= condition to ignore small mints.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "network",
+   "expression": {
+    "network_id": "<NETWORK_ID>"
+   }
+  },
+  {
+   "type": "emitted_log",
+   "expression": {
+    "address": "<TOKEN_ADDRESS>",
+    "match_any": false,
+    "match_non_project_contracts": false,
+    "event_name": "Transfer",
+    "event_id": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+    "decode_events": false,
+    "parameter_conditions": [
+     {
+      "parameter_name": "from",
+      "operator": "==",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x0000000000000000000000000000000000000000"
+     }
+    ]
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<NOTIFY_CHANNEL_ID>",
+   "enabled": true
+  }
+ ]
+}

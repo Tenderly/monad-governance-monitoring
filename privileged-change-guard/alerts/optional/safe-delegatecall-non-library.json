@@ -1,0 +1,167 @@
+{
+ "name": "GOV optional: Safe delegatecall to a non-library target",
+ "description": "Safe execTransaction with operation 1 (DELEGATECALL) to a target outside the Safe libraries (MultiSend, MultiSendCallOnly, CreateCall, SignMessageLib of v1.3.0, v1.4.1, v1.5.0): the known Safe singleton-swap takeover route, which emits no config event. It matches on the decoded execTransaction call, so test it on your Safe first. A Safe migration also matches. One alert per Safe (SAFE_ADDRESS), because method_call needs an explicit address. The tag gates which transactions are evaluated.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "tag",
+   "expression": {
+    "tag": "mf-privileged"
+   }
+  },
+  {
+   "type": "method_call",
+   "expression": {
+    "address": "<SAFE_ADDRESS>",
+    "function_name": "execTransaction",
+    "signature": {
+     "function_name": "execTransaction",
+     "input_types": [
+      "address",
+      "uint256",
+      "bytes",
+      "uint8",
+      "uint256",
+      "uint256",
+      "uint256",
+      "address",
+      "address",
+      "bytes"
+     ]
+    },
+    "transaction_type": null,
+    "parameter_conditions": [
+     {
+      "parameter_name": "operation",
+      "operator": "==",
+      "parameter_type": "uint",
+      "nested_parameter_type": "",
+      "comparison_value": "1"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x218543288004cd07832472d464648173c77d7eb7"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x2ef5ecfbea521449e4de05edb1ce63b75eda90b4"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x38869bf66a61cf6bdb996a6ae40d5853fd43b526"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x40a2accbd92bca938b02010e17a5b8929b49130d"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x4ffef8222648872b3de295ba1e49110e61f5b5aa"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x7cbb62eaa69f79e6873cd1ecb2392971036cfaa4"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x9641d764fc13c8b624c04430c7356c1c7c8102e2"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x98ffbbf51bb33a056b08ddf711f289936aaff717"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x998739bfdaadde7c933b942a68053933098f9eda"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0x9b35af71d77eaf8d7e40252370304687390a1a52"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0xa1dabef33b3b82c7814b6d82a79e50f4ac44102b"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0xa238cbeb142c10ef7ad8442c6d1f9e89e07e7761"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0xa65387f16b013cf2af4605ad8aa5ec25a2cba3a2"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0xa83c336b20401af773b6219ba5027174338d1836"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0xb19d6ffc2182150f8eb585b79d4abcd7c5640a9d"
+     },
+     {
+      "parameter_name": "to",
+      "operator": "!=",
+      "parameter_type": "address",
+      "nested_parameter_type": "",
+      "comparison_value": "0xd53cd0ab83d845ac265be939c57f53ad838012c9"
+     }
+    ]
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<PRIV_CHANGE_GUARD_ACTION_ID>",
+   "enabled": true
+  },
+  {
+   "id": "<NOTIFY_CHANNEL_ID>",
+   "enabled": true
+  }
+ ]
+}

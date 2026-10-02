@@ -1,0 +1,24 @@
+{
+ "name": "GOV optional: admin wallet tripwire (any token sent)",
+ "description": "Admin wallet tripwire: any ERC20 token sent out of a wallet tagged mf-admin-wallets (the admin EOAs and Safes, added to the project as wallets). Direction sent, netted per transaction, so flash-loan round trips stay quiet. Only tokens with a USD price count, so spam and airdropped tokens and fake Transfer logs of look-alike tokens do not fire it. Native MON is not covered. Send it to Slack or Email: the Web3 Action payload does not carry the matched transfers.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "erc20_token_transfer",
+   "expression": {
+    "match_any": true,
+    "address_tag": "mf-admin-wallets",
+    "match_non_project_contracts": true,
+    "require_dollar_value": true,
+    "direction": "sent",
+    "net": true
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<NOTIFY_CHANNEL_ID>",
+   "enabled": true
+  }
+ ]
+}

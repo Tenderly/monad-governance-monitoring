@@ -1,0 +1,36 @@
+{
+ "name": "GOV optional: outflow of one token from a liquidity holder",
+ "description": "Outflow of one token from the address that holds it: the watched address, direction sent, netted per transaction, at least a minimum amount in raw token units. In an Aave V3 fork the funds sit in each reserve's aToken, not in the Pool: watch the aToken of every borrowable asset (Pool.getReserveData(asset).aTokenAddress), one alert per reserve. The address must be in the project. Send it to Slack or Email: the Web3 Action payload does not carry the matched transfers.",
+ "enabled": true,
+ "expressions": [
+  {
+   "type": "network",
+   "expression": {
+    "network_id": "<NETWORK_ID>"
+   }
+  },
+  {
+   "type": "erc20_token_transfer",
+   "expression": {
+    "addresses": [
+     "<HOLDER_ADDRESS>"
+    ],
+    "token_addresses": [
+     {
+      "network_id": "<NETWORK_ID>",
+      "address": "<TOKEN_ADDRESS>"
+     }
+    ],
+    "direction": "sent",
+    "net": true,
+    "min_amount": "<MIN_AMOUNT>"
+   }
+  }
+ ],
+ "delivery_channels": [
+  {
+   "id": "<NOTIFY_CHANNEL_ID>",
+   "enabled": true
+  }
+ ]
+}
